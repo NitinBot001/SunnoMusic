@@ -1,0 +1,642 @@
+#suggestion-box {
+    position: absolute;
+    background-color: white;
+    width: 60%; /* Match the width of the input bar */
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    top: 70px; /* Adjust this to match the height of your input */
+    left: 20px;
+    border-radius: 4px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow for better visibility */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+.container {
+    max-width:100%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+#getLyricsButton {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#getLyricsButton:hover {
+    background-color: #218838;
+}
+
+.lyrics-section {
+    margin-top: 20px;
+}
+
+#lyricsContainer {
+    white-space: pre-wrap;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+
+/* CSS */
+.button-17 {
+  font-size: 50px;
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+
+
+
+
+/* HTML: <div class="loader"></div> */
+.loader-home {
+  position: absolute;
+  top: 50%;
+  left:45%;
+  transform: translate(0, -50%);
+  width: 48px;
+  height: 48px;
+  background: #a64dff;
+  border-radius: 9px;
+  --c:no-repeat radial-gradient(farthest-side,#000 92%,#0000);
+  --s:18px 18px;
+  -webkit-mask:
+    var(--c) left  4px top    4px,
+    var(--c) right 4px top    4px,
+    var(--c) right 4px bottom 4px,
+    var(--c) left  4px bottom 4px,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  animation: l4 1.5s infinite;
+}
+@keyframes l4 {
+  0%    {-webkit-mask-size:0    0  ,0    0  ,0    0  ,0    0  ,auto}
+  12.5% {-webkit-mask-size:var(--s),0    0  ,0    0  ,0    0  ,auto}
+  25%   {-webkit-mask-size:var(--s),var(--s),0    0  ,0    0  ,auto}
+  37.5% {-webkit-mask-size:var(--s),var(--s),var(--s),0    0  ,auto}
+  50%   {-webkit-mask-size:var(--s),var(--s),var(--s),var(--s),auto}
+  62.5% {-webkit-mask-size:0    0  ,var(--s),var(--s),var(--s),auto}
+  75%   {-webkit-mask-size:0    0  ,0    0  ,var(--s),var(--s),auto}
+  87.5% {-webkit-mask-size:0    0  ,0    0  ,0   0   ,var(--s),auto}
+  100%  {-webkit-mask-size:0    0  ,0    0  ,0   0   ,0   0   ,auto}
+}
+
+.loader-search {
+  position: absolute;
+  top: 50%;
+  left:42%;
+  transform: translate(0, -50%);
+  width: 45px;
+  aspect-ratio: .75;
+  --c:no-repeat linear-gradient(#a64dff 0 0);
+  background: 
+    var(--c) 0%   100%,
+    var(--c) 50%  100%,
+    var(--c) 100% 100%;
+  background-size: 20% 65%;
+  animation: l8 1s infinite linear;
+}
+@keyframes l8 {
+  16.67% {background-position: 0% 0%  ,50% 100%,100% 100%}
+  33.33% {background-position: 0% 0%  ,50% 0%  ,100% 100%}
+  50%    {background-position: 0% 0%  ,50% 0%  ,100% 0%  }
+  66.67% {background-position: 0% 100%,50% 0%  ,100% 0%  }
+  83.33% {background-position: 0% 100%,50% 100%,100% 0%  }
+}
+
+
+
+button,div {
+
+  outline: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+}
+
+/* Add these new styles for the menu */
+#menu-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 17;
+}
+
+.menu-icon {
+    height: 30px;
+}
+
+.menu-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #a64dff;
+    z-index: 20;
+    display: none;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.menu-header {
+    padding: 20px;
+    text-align: right;
+}
+
+#menu-close-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.menu-options {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-options li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #8830df;
+}
+
+.menu-options li:last-child {
+    border-bottom: none;
+}
+
+.menu-options a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Update the header styles to accommodate the menu icon */
+
+.main-img {
+    height: 50px;
+    margin-left: 60px;
+    padding-left: 10%;
+}
+
+/* Rest of the CSS remains the same */
+
+
+
+/* ... (keep all existing styles) */
+
+/* Update the search popup styles */
+#search-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    flex-direction: column;
+    z-index: 15;
+}
+
+.search-header {
+    padding: 20px;
+    width: 100%;
+    background-color: #a64dff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #6600cc;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+#search-close-btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #6600cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ... (keep all remaining styles) */
+
+#search-icon {
+    right: 30px;
+    margin-left: 90%;
+    margin-top: 10px;
+    height: 50px;
+}
+
+.searchioc {
+    height: 40px;
+}
+
+#search-results-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.search-result-card {
+    display: flex;
+    align-items: center;
+    background-color: #6600cc;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-result-card:hover {
+    background-color: #5900b3;
+}
+
+.search-result-thumbnail {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.search-result-info {
+    flex-grow: 1;
+}
+
+.search-result-title {
+    color: white;
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.search-result-artists {
+    color: #ccc;
+    margin: 0;
+    font-size: 14px;
+}
+
+
+/* Main Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    user-select: none;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE */
+}
+
+.div-button {
+    height: 20px;
+    border-radius: 20px;
+    max-height: 40;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6ccff;
+    color: #333;
+}
+
+header {
+    background-color: #a64dff;
+    color: #fff;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    margin: 0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.main-img {
+    position: absolute;
+    left: 0%;
+    height: 50px;
+    top: 7.5px;
+    margin: auto;
+}
+
+
+/**
+.sunno-h1{
+    font-size: 25px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+**/
+
+main {
+    padding: 20px;
+    background-color: #e6ccff;
+}
+
+.song-container {
+    display: grid;
+    margin-top: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.song-card li:last-child {
+    margin-bottom: 50px;
+}
+
+.song-card {
+    background-color: #6600cc;
+    border-radius: 8px;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.song-card:hover {
+    transform: translateY(-5px);
+}
+
+.song-thumbnail-wrapper {
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    /* Aspect ratio 16:9 */
+}
+
+.song-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-details {
+    padding: 10px;
+}
+
+.song-title {
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.song-views {
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+.song-artists {
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+
+
+/* Sticky Music Control Panel */
+
+.music-control-panel {
+    position: fixed;
+    z-index: 20;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #8830df;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    display: none;
+    /* Hidden initially */
+}
+
+.control-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.control-song-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.control-title {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: bold;
+    color: white;
+}
+
+.control-button {
+    height: 25px;
+    max-height: 45px;
+    border-radius: 50%;
+    border-radius: 20px;
+}
+
+.control-buttons button {
+    padding: 10px;
+    color: white;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Player Modal Styles */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    border-radius: 0px;
+    top: 0;
+    width: 100%;
+    overflow-y: scroll;
+    height: 100%;
+    background-color: #e6ccff;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: scroll;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+     width:40px;
+    background-color: transparent;
+    border-radius: 5%;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.player-thumbnail {
+    width: 90%;
+    margintop: 50%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 50%;
+}
+
+.controls button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 60%;
+    cursor: pointer;
+}
+
+#progress-bar {
+    width: 90%;
+    margin: 20px 0;
+}
+
+

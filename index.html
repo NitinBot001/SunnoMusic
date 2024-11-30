@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNNO Music App</title>
+     <link rel="icon" href="favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <header>
+        <div id="menu-icon">
+            <img src="menu-icon.png" alt="Menu" class="menu-icon">
+        </div>
+        <h1 id="section" class="sunno-h1">
+            <img src="logo.png" alt="SUNNO Logo" class="main-img">
+        </h1>
+        <div id="search-icon">
+            <img src="search-icon.png" alt="Search" class="searchioc">
+        </div>
+    </header>
+
+    <div id="menu-popup" class="menu-popup">
+        <div class="menu-header">
+            <button id="menu-close-btn">Close</button>
+        </div>
+        <ul class="menu-options">
+            <li><a href="#" id="menu-home">Home</a></li>
+            <li><a href="#" id="menu-playlist">Playlists</a></li>
+            <li><a href="#" id="menu-downloads">Downloads</a></li>
+            <li><a href="#" id="menu-settings">Settings</a></li>
+        </ul>
+    </div>
+
+    <!-- Rest of the HTML remains the same -->
+   
+    <main>
+        <!-- New Top Artists Section -->
+        
+            <div class="song-container" id="song-container">
+                <!-- Songs will be dynamically loaded here -->
+            </div>
+        
+    </main>
+
+    <!-- Sticky Music Control Panel -->
+    <div id="music-control-panel" class="music-control-panel">
+        <img id="control-thumbnail" src="" alt="Song Thumbnail" class="control-thumbnail">
+        <div class="control-song-info">
+            <p id="control-song-title" class="control-title">Song Title</p>
+        </div>
+        <div class="control-buttons">
+            <button id="control-play-btn"><img class="div-button" src="play-button.png"></button>
+            <button id="control-next-btn"><img class="div-button" src="next-button.png"></button>
+        </div>
+    </div>
+
+
+    <!-- Full-Screen Popup -->
+    <div id="search-popup" style="display: none;">
+        <div class="search-header">
+            <input id="search-input" type="text" placeholder="Search for songs..." />
+            <button id="search-button"><img src="search-icon.png" style="height:17px;" alt="search-btn"></button>
+            <button  id="search-close-btn">&#10060;</button>
+            <div id="suggestion-box"></div> 
+        </div>
+        <div id="search-results-container"></div>
+    </div>
+
+    <!-- Player Popup Modal -->
+    <div id="player-modal" class="modal">
+        <div class="modal-content">
+            <span class="back-button" id="back-btn">
+                <!-- HTML !-->
+                <button class="button-17" role="button"><img style="height:45px;" src="back-button.png"></button></span>
+            <img id="player-thumbnail" class="player-thumbnail" src="" alt="Song Thumbnail">
+            <h2 id="player-title">Song Title</h2>
+            <p id="player-artists">Artists</p>
+            <audio id="audio-player"></audio>
+            <input type="range" id="progress-bar" value="0" max="100">
+            <div class="controls">
+                <button id="prev-btn"><img class="div-button" src="prev-button.png"></button>
+                <button id="play-btn"><img class="div-button" src="play-button.png"></button>
+                <button id="next-btn"><img class="div-button" src="next-button.png"></button>
+            </div>
+            
+
+    <div id="popupq" class="popupq">
+        <div class="popup-contentq">
+            <span class="close-btnq" id="closePopupBtnq">&times;</span>
+            <h2>Queue</h2>
+            <div id="songListq">
+                <!-- Song list will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+            <div class="container">
+                <div class="lyrics-section">
+            <div id="lyricsContainer"></div>
+        </div>
+        
+        <div class="input-section">
+            <button id="getLyricsButton">Get Lyrics</button>
+        </div>
+    </div>
+    <div id="openPopupBtnq" ><svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M30 12H6v4h24v-4zm0 8H6v4h24v-4zM6 32h16v-4H6v4zm28-20v16.37c-.63-.23-1.29-.37-2-.37-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6V16h6v-4H34z"/></svg></div>
+        </div>
+    </div>
+
+
+
+    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('copy', function(event) {
+            event.preventDefault();
+        });
+        document.addEventListener('cut', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</body>
+
+</html>
